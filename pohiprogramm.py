@@ -35,3 +35,4 @@ def asula1():
 while True:
     if uusmang == "1":
         asula1()
+#test
