@@ -13,9 +13,10 @@ armor = 0
 
 
 if uusmang == "1":
-    input("lore1")
-    input("lore2")
-    input("lore3")
+    input("On aasta 2047. Tehisintellekti kiire areng on muutnud TI autonoomseks. (Enter jätkamiseks)")
+    input("TI-robotid on võtnud üle maailma ja on hakanud jahtima inimesi. Peaaegu kõik inimkond on kas surnud või vangistatud.")
+    input("Sina oled olnud vanglas juba paar kuud ning oled kuulnud kuulujutte superarvutist, mis hoiab roboteid töös.")
+    input("Ühel päeval sa pääsed vanglast ja tundub, et sinu puudumist ei ole märgatud. Sinu missioon on leida superarvuti ja see hävitada.")
 else:
     fail = input("Sisesta salvestusfaili nimi: ")
     with open(fail, "r", encoding="utf-8") as fail:
