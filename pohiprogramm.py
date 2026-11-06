@@ -10,7 +10,7 @@ elud = 100
 kuldmündid = 0
 relv = "rusikad"
 armor = 0
-
+bag = []
 
 if uusmang == "1":
     input("On aasta 2047. Tehisintellekti kiire areng on muutnud TI autonoomseks. (Enter jätkamiseks)")
@@ -24,7 +24,7 @@ else:
         kuldmündid = int(fail.readline().strip())
         relv = fail.readline().strip()
         armor = int(fail.readline().strip())
-
+        bag = fail.readline().strip()
 
 #asula 1
 def asula1():
@@ -76,3 +76,13 @@ def kasiino():
                     print("Sul said kuldmündid otsa")
                     break
                 time.sleep(3)
+
+
+
+# loot funktsioon toimib erinevalt sõltuvalt, mida lootida
+def loot(asukoht):
+    if asukoht == "prügikast":
+        valus = random.choice(
+    elif asukoht == "maja":
+    elif asukoht == "
+    
