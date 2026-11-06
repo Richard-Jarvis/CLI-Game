@@ -1,5 +1,5 @@
 import random
-
+import time
 #Salvestussüsteem
 #elud, kuldmündid, relv, armor
 
@@ -27,7 +27,7 @@ else:
 
 
 #asula 1
-#def asula1():
+def asula1():
     
 
 
@@ -36,4 +36,43 @@ else:
 while True:
     if uusmang == "1":
         asula1()
-#test
+
+def kasiino():
+    global kuldmündid
+    
+    mang = input("Mängud:\n 1 - Coinflip\n")
+    if mang == "1":
+        # Mäng käib kuni kasutaja ei sisesta panust
+        while True:
+            # Küsib panust kuni panus sobib
+            try:
+                while True:
+                    panus = int(input("Kui palju soovid panustada?\n"))
+                    if panus > kuldmündid:
+                        print("Sul pole nii palju raha")
+                        time.sleep(3)
+                    elif panus <= 0:
+                        print("Panus peab olema suurem kui 0")
+                        time.sleep(3)
+                    else:
+                        break
+            except:
+                break
+                    
+           
+            pool = input("Kas kull või kiri?\n")
+                
+            if random.choice(["kull", "kiri"]) == pool:
+                kuldmündid += panus
+                voit = [f"Võitsid!, sul on nüüd {kuldmündid} kuldmünti", f"Vedas, nüüd on sul taskus {kuldmündid} kuldmünti"]
+                print(f"{random.choice(voit)}")
+                time.sleep(3)
+            else:
+                kuldmündid -= panus
+                kaotus = [f"Ei vedanud seekord, sul on järel {kuldmündid} kuldmünti", f"Kaotasid... sul on nüüd {kuldmündid} kuldmünti"]
+                print(f"{random.choice(kaotus)}")
+                time.sleep(2)
+                if kuldmündid == 0:
+                    print("Sul said kuldmündid otsa")
+                    break
+                time.sleep(3)
