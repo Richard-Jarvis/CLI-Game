@@ -27,7 +27,7 @@ else:
 
 
 #asula 1
-def asula1():
+#def asula1():
     
 
 
