@@ -1,9 +1,5 @@
 import random
 import time
-#Salvestussüsteem
-#elud, kuldmündid, relv, armor
-
-uusmang = input("Kas soovid alustada uut mängu või laadida salvestus failist?\n 1 - Alusta uut mängu\n 2 - Lae salvestusfailist\n")
 
 #Globaalsed muutujad
 elud = 100
@@ -12,11 +8,19 @@ relv = "rusikad"
 armor = 0
 bag = []
 
+###STARTUP###
+
+uusmang = input("Kas soovid alustada uut mängu või laadida salvestus failist?\n 1 - Alusta uut mängu\n 2 - Lae salvestusfailist\n")
+
 if uusmang == "1":
     input("On aasta 2047. Tehisintellekti kiire areng on muutnud TI autonoomseks. (Enter jätkamiseks)")
-    input("TI-robotid on võtnud üle maailma ja on hakanud jahtima inimesi. Peaaegu kõik inimkond on kas surnud või vangistatud.")
-    input("Sina oled olnud vanglas juba paar kuud ning oled kuulnud kuulujutte superarvutist, mis hoiab roboteid töös.")
-    input("Ühel päeval sa pääsed vanglast ja tundub, et sinu puudumist ei ole märgatud. Sinu missioon on leida superarvuti ja see hävitada.")
+    input("TI-robotid on võtnud üle maailma ja on hakanud jahtima inimesi. Peaaegu kõik inimkond on kas surnud või vangistatud. (Enter jätkamiseks)")
+    input("Sina oled olnud vanglas juba paar kuud ning oled kuulnud kuulujutte superarvutist, mis hoiab roboteid töös. (Enter jätkamiseks)")
+    input("Ühel päeval sa pääsed vanglast ja tundub, et sinu puudumist ei ole märgatud. Sinu missioon on leida superarvuti ja see hävitada. (Enter jätkamiseks)")
+    time.sleep(1)
+    print("\n")
+    print("-------")
+    print("\n")
 else:
     fail = input("Sisesta salvestusfaili nimi: ")
     with open(fail, "r", encoding="utf-8") as fail:
@@ -26,16 +30,48 @@ else:
         armor = int(fail.readline().strip())
         bag = fail.readline().strip()
 
-#asula 1
-def asula1():
+
+###FUNKTSIOONID###
+
+##ASUKOHAD##
+
+def esimene_asula():
+    input("Pärast mitut tundi liikumist jõuad ühte väiksesse asulasse. (Enter jätkamiseks)")
+    input("Seda küla on hiljuti rüüstatud, puidupõlemislõhn on ikka veel õhus. Rüüstamisest on alles jäänud vaid paar maja. (Enter jätkamiseks)")
+    input("Tõenäoliselt on enamus asju ära röövitud, kuid võib-olla leidub siin veel midagi. (Enter jätkamiseks)")
     
+    while True:
+        sisend = input("\nMida soovid teha?\n 1 - Astu kirikusse\n 2 - Astu poolenisti mahapõlenud majja\n 3 - Jaluta mööda asulat ringi\n 4 - Liigu edasi järgmisesse")
+        if sisend == "1":
+            input("Astud kivist kirikusse. Kirik on pime ja niiske, sinu sammud kajavad kiriku seintelt. Näed enda ees altarit, millel ei ole enam midagi alles. (Enter jätkamiseks)")
+            input("Ringi vaadates ei näe sa midagi, mis võiks olla sulle kasulik. Astud kirikust välja.")
+        elif sisend == "2":
+            print("")
+        elif sisend == "3":
+            print("")
+        elif sisend == "4":
+            break
 
 
+##LISAFUNKTSIOONID##
+        
+def pickup(asi):
+    global bag
+    
+    kas_võtsid = input(f"Leidsid {asi}.\n 1 - Võta {asi} kaasa\n 2 - Ära võta kaasa")
+    if kas_võtsid == 1:
+        bag.append(asi)
+    else:
+        return 0
 
-
-while True:
-    if uusmang == "1":
-        asula1()
+def bagcheck(bag):
+    if len(bag) == 0:
+        print("Sinu seljakotis ei ole midagi!")
+    else:
+        print("Sinu seljakotis on: ", end="")
+        for asi in bag:
+            print(f"{asi},", end=" ")
+        print("")
 
 def kasiino():
     global kuldmündid
@@ -78,11 +114,24 @@ def kasiino():
                 time.sleep(3)
 
 
-
+'''
 # loot funktsioon toimib erinevalt sõltuvalt, mida lootida
 def loot(asukoht):
     if asukoht == "prügikast":
         valus = random.choice(
     elif asukoht == "maja":
-    elif asukoht == "
+    elif asukoht == ""
     
+'''
+
+###MÄNGU LOOP
+    
+while True:
+    if uusmang == "1":
+        esimene_asula()
+    
+
+
+
+
+
