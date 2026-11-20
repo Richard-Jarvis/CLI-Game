@@ -52,6 +52,25 @@ def esimene_asula():
         elif sisend == "4":
             break
 
+###COMBAT FUNKTSIOONID###
+
+def random_encounter():
+    global elud
+    global armor
+    global relv
+
+    kas_kohtad_vaenlast = random.randint(1, 10)
+    if kas_kohtad_vaenlast <= 3:
+        vaenlane = random.choice(["robot", "küborg", "rüüstaja"])
+        if vaenlane == "robot":
+        
+        if vaenlane == "küborg":
+            pass
+        if vaenlane == "rüüstaja":
+            pass
+    
+
+
 
 ##LISAFUNKTSIOONID##
         
@@ -114,15 +133,37 @@ def kasiino():
                 time.sleep(3)
 
 
-'''
+
 # loot funktsioon toimib erinevalt sõltuvalt, mida lootida
 def loot(asukoht):
     if asukoht == "prügikast":
-        valus = random.choice(
+        global elud
+        global kuldmündid
+        if random.randint(1, 10) <= 2:
+            elud -= random.randint(1, 5)
+            said_haiget = [f"Prügikastist leidsid klaasikillu, mis lõikas su käe ära. Sul on nüüd {elud} HP", f"Sa komistasid prügikastist välja ronides. Sul on nüüd {elud} HP", f"Prügikastis oli kohutav hais, mis kahjustas su kopse. Sul on nüüd {elud} HP"]
+            print(said_haiget[random.randint(0, 2)])
+
+        leidmine = random.randint(1, 100)
+        leidsid_kulda = [f"Leidsid prügikastist {kogus} kuldmünti!", f"Prügikastis oli {kogus} kuldmünti, sul on nüüd {kuldmündid} kuldmünti!", f"Prügikastis oli terve kullakang! Sul on nüüd {kuldmündid} kuldmünti!"]
+
+        if leidmine <= 59:
+            kogus = random.randint(1, 10)
+            kuldmündid += kogus
+            print(leidsid_kulda[random.randint(0, 1)])
+        elif leidmine <= 60:
+            kuldmündid += 100
+            print(leidsid_kulda[2])
+        else:
+            midagi = [f"Prügikastist leidsid vana sokkide hunniku, mis lõhnas kohutavalt", f"Prügikastist leidsid vana telefoni, mis ei tööta", f"Prügikast oli täiesti tühi, ei leidnud midagi"]
+            print(midagi[random.randint(0, 2)])
+        
     elif asukoht == "maja":
-    elif asukoht == ""
+        pass
+    elif asukoht == "labor":
+        pass
     
-'''
+
 
 ###MÄNGU LOOP
     
