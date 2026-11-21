@@ -63,11 +63,13 @@ def random_encounter():
     if kas_kohtad_vaenlast <= 3:
         vaenlane = random.choice(["robot", "küborg", "rüüstaja"])
         if vaenlane == "robot":
-        
+            robot_hp = random.randrange(20, 50, 10)
+            print(f"Sa kohtad robotit, kellel on {robot_hp} HP")
+            
         if vaenlane == "küborg":
-            pass
+            küborg_hp = random.randrange(30, 60, 10)
         if vaenlane == "rüüstaja":
-            pass
+            rüüstaja_hp = random.randrange(20, 40, 10)
     
 
 
