@@ -41,14 +41,14 @@ def esimene_asula():
     input("Tõenäoliselt on enamus asju ära röövitud, kuid võib-olla leidub siin veel midagi. (Enter jätkamiseks)")
     
     while True:
-        sisend = input("\nMida soovid teha?\n 1 - Astu kirikusse\n 2 - Astu poolenisti mahapõlenud majja\n 3 - Jaluta mööda asulat ringi\n 4 - Liigu edasi järgmisesse")
+        sisend = input("\nMida soovid teha?\n 1 - Astu kirikusse\n 2 - Astu poolenisti mahapõlenud majja\n 3 - Otsi prügikast läbi\n 4 - Liigu edasi järgmisesse\n")
         if sisend == "1":
             input("Astud kivist kirikusse. Kirik on pime ja niiske, sinu sammud kajavad kiriku seintelt. Näed enda ees altarit, millel ei ole enam midagi alles. (Enter jätkamiseks)")
             input("Ringi vaadates ei näe sa midagi, mis võiks olla sulle kasulik. Astud kirikust välja.")
         elif sisend == "2":
             print("")
         elif sisend == "3":
-            print("")
+            loot("prügikast")
         elif sisend == "4":
             break
 
@@ -60,27 +60,35 @@ def random_encounter():
     global relv
 
     kas_kohtad_vaenlast = random.randint(1, 10)
+    
     if kas_kohtad_vaenlast <= 3:
         vaenlane = random.choice(["robot", "küborg", "rüüstaja"])
+        
         if vaenlane == "robot":
             robot_hp = random.randrange(20, 50, 10)
-            print(f"Sa kohtad robotit, kellel on {robot_hp} HP")
-            
+            print(f"Nurga tagant ilmub robot, kellel on {robot_hp} HP")
+
         if vaenlane == "küborg":
             küborg_hp = random.randrange(30, 60, 10)
+            print(f"Nurga tagant ilmub küborg, kellel on {küborg_hp} HP")
+
         if vaenlane == "rüüstaja":
             rüüstaja_hp = random.randrange(20, 40, 10)
+            print(f"Nurga tagant ilmub rüüstaja, kellel on {rüüstaja_hp} HP")
     
 
 
 
 ##LISAFUNKTSIOONID##
-        
+
+def kysi():
+    
+
 def pickup(asi):
     global bag
     
     kas_võtsid = input(f"Leidsid {asi}.\n 1 - Võta {asi} kaasa\n 2 - Ära võta kaasa")
-    if kas_võtsid == 1:
+    if kas_võtsid == "1":
         bag.append(asi)
     else:
         return 0
@@ -138,27 +146,34 @@ def kasiino():
 
 # loot funktsioon toimib erinevalt sõltuvalt, mida lootida
 def loot(asukoht):
+    global elud
+    global kuldmündid
     if asukoht == "prügikast":
-        global elud
-        global kuldmündid
         if random.randint(1, 10) <= 2:
             elud -= random.randint(1, 5)
+            if elud <= 0:
+                print("Sa said surma. Su keha jäi prügikasti. Mäng läbi.")
+                exit()
             said_haiget = [f"Prügikastist leidsid klaasikillu, mis lõikas su käe ära. Sul on nüüd {elud} HP", f"Sa komistasid prügikastist välja ronides. Sul on nüüd {elud} HP", f"Prügikastis oli kohutav hais, mis kahjustas su kopse. Sul on nüüd {elud} HP"]
             print(said_haiget[random.randint(0, 2)])
+            time.sleep(2)
+            
 
         leidmine = random.randint(1, 100)
-        leidsid_kulda = [f"Leidsid prügikastist {kogus} kuldmünti!", f"Prügikastis oli {kogus} kuldmünti, sul on nüüd {kuldmündid} kuldmünti!", f"Prügikastis oli terve kullakang! Sul on nüüd {kuldmündid} kuldmünti!"]
-
         if leidmine <= 59:
             kogus = random.randint(1, 10)
             kuldmündid += kogus
+            leidsid_kulda = [f"Leidsid prügikastist {kogus} kuldmünti!", f"Prügikastis oli {kogus} kuldmünti, sul on nüüd {kuldmündid} kuldmünti!"]
             print(leidsid_kulda[random.randint(0, 1)])
+            time.sleep(2)
         elif leidmine <= 60:
             kuldmündid += 100
-            print(leidsid_kulda[2])
+            print(f"Leidsid prügikastist terve kullakangi! Sul on nüüd {kuldmündid} kuldmünti!")
+            time.sleep(3)
         else:
             midagi = [f"Prügikastist leidsid vana sokkide hunniku, mis lõhnas kohutavalt", f"Prügikastist leidsid vana telefoni, mis ei tööta", f"Prügikast oli täiesti tühi, ei leidnud midagi"]
             print(midagi[random.randint(0, 2)])
+            time.sleep(2)
         
     elif asukoht == "maja":
         pass
@@ -172,9 +187,3 @@ def loot(asukoht):
 while True:
     if uusmang == "1":
         esimene_asula()
-    
-
-
-
-
-
